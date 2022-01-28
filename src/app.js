@@ -26,10 +26,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
-app.get("/", (req, res) => {
-res.send('welcome to opening page ,it will show initially');
-});
-
 //Routes===========================================
 var userRoutes = require("../routes/user");
 app.use("/user", userRoutes);
