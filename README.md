@@ -2,6 +2,7 @@
 🌀 BECHDE - E-commerce project made with React ,Express ,Node ,Mongo
 
 ### User Permissions
+---
 
 #### Students
 * register himself on the app
@@ -24,6 +25,7 @@
 * upload details of his own product to be sold online
 
 ### A note to the viewers
+---
 
 1. You can try logging in as an admin by entering the following credentials:
 * **Email:** Pranjal112@gmail.com
@@ -46,6 +48,11 @@
 * Mongoose
 * JWT authentication
 
-### Setting up server and database
+### Steps followed to setup the project
 ---
+#### Setting up server and database
+1. Initialise a package.json file by entering the following command in terminal, after getting into the project directory :
 
+```Javascript
+npm init
+```
