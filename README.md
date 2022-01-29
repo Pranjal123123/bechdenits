@@ -1,4 +1,4 @@
-# bechdenits
+# BechdeNitsLocal
 🌀 BECHDE - E-commerce project made with React ,Express ,Node ,Mongo
 
 ### User Permissions
@@ -51,8 +51,86 @@
 ### Steps followed to setup the project
 ---
 #### Setting up server and database
-1. Initialise a package.json file by entering the following command in terminal, after getting into the project directory :
-
+1. Install npm packages required for backend side :
+```Javascript
+npm init
+npm i -D nodemon
+```
+2. Modify the package.json by adding the following scripts to it :
+```Javascript
+  "start": "node server.js",
+  "server": "nodemon server.js",
+ ```
+ 3. Create an account on MongoDB cloud Atlas, thereafter, creating a database on it and get your MongoURI
+ 4. Modify server.js to get connected to the database, using the MongoURI and also add the following lines at the end of server.js :
+ ```Javascript
+ const port = process.env.PORT || 5000;
+ app.listen(port, ()=> console.log(`Server started running on port ${port}`));
+ ```
+ 5. Type the following command to get your server running on your localhost and ensure hot-reloading, when the server-side code is modified :
+ ```Javascript
+ npm run server
+ ```
+ 6. Add JWT token based authentication and 'cors' module and use them in server.js.
+ 7. Make Schemas for various collections to be stored in database and export them from a folder models and the REST APIs for various routes in the folder routes.
+ 
+ ### Setting up the React client
+ 1. Install npm packages required for frontend side :
 ```Javascript
 npm init
 ```
+ 2. Add proxy in frontend package.json
+ ```Javascript
+"proxy": http://localhost:5000
+ ```
+ 
+## Deployment
+***
+1. Add the following lines to server.js :
+
+ ```Javascript
+// Serve static assets if in production
+if (process.env.NODE_ENV === 'production') {
+    // Set static folder
+    app.use(express.static('client/build'));
+  
+    app.get('*', (req, res) => {
+      res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+    });
+  }
+  ```
+2.Add the following script to the package.json of server
+```Javascript
+ "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+```
+3. Install Heroku CLI and make sure you have intialised a git repository in the project directory. Enter the following commands in the terminal :
+```Javascript
+heroku login
+heroku create
+git add .
+git commit -am "Deployed to Heroku"
+git push heroku master
+```
+4.Open your heroku account and click on Open App option in the dashboard.
+
+### Routes 
+- `/user` Routes
+#### Get `/signup` Signup Page Route
+#### Get `/login` Login Page Route
+#### Get `/logout` Logout a logged in user
+#### Get `/` Home Page Route
+#### Get `/about` About Page Route
+#### Get `/contact` Contact Page Route
+#### Get `/services` Services Page Route
+#### Get `/dashboard` Dashboard Page Route
+#### Get `/feedback` Feedback Page Route
+#### Get `/customer` CustomerPage Route
+#### Get `/report` Report Page Route
+#### Get `/sellproduct` Sellproduct Page Route
+#### Get `/buy` Buy Page Route
+#### Get `/sell` Sell Page Route
+#### Get `/selledit` Selledit Page Route
+#### Get `/message` Message Page Route
+
+
+***
